@@ -81,10 +81,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "description", content: "Portfolio of Ehab Alhayek (Ethan) — AI Engineering student, web developer, and tech specialist crafting intelligent systems and pixel-perfect interfaces." },
       { name: "author", content: "Ehab Alhayek" },
       { property: "og:title", content: "Ethan / Ehab Alhayek — AI Engineer & Web Developer" },
-      { property: "og:description", content: "Engineering intelligent systems and crafting premium digital experiences." },
+      { property: "og:description", content: "Portfolio of Ehab Alhayek (Ethan) — AI Engineering student, web developer, and tech specialist crafting intelligent systems and pixel-perfect interfaces." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:title", content: "Ethan / Ehab Alhayek — AI Engineer & Web Developer" },
+      { name: "twitter:description", content: "Portfolio of Ehab Alhayek (Ethan) — AI Engineering student, web developer, and tech specialist crafting intelligent systems and pixel-perfect interfaces." },
+      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/mOHaU9BmtLPIzdHRFU5HgfefCb83/social-images/social-1783241469953-Gemini_Generated_Image_ivz1daivz1daivz1.webp" },
+      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/mOHaU9BmtLPIzdHRFU5HgfefCb83/social-images/social-1783241469953-Gemini_Generated_Image_ivz1daivz1daivz1.webp" },
     ],
     links: [
       {
