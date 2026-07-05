@@ -21,7 +21,7 @@ export const Route = createFileRoute("/")({
 });
 
 const WHATSAPP = "https://wa.me/972594820775";
-const TELEGRAM = "https://t.me/ehabalhayekm";
+const TELEGRAM = "https://t.me/970594820775";
 const EMAIL = "mailto:ehabalhayekm@gmail.com";
 const GITHUB = "https://github.com/ethanmarten/";
 
@@ -186,7 +186,9 @@ function Hero() {
             <ArrowUpRight className="h-4 w-4" />
           </a>
           <a
-            href="#contact"
+            href="https://ehabmohammed.carrd.co"
+            target="_blank"
+            rel="noreferrer"
             className="inline-flex items-center gap-2 rounded-full border border-hairline bg-surface px-6 py-3 text-sm font-semibold text-foreground transition-colors hover:border-emerald-accent/60 hover:text-emerald-accent"
           >
             Start a Conversation
