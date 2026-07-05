@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import {
   ArrowUpRight,
   Mail,
@@ -14,6 +14,8 @@ import {
   Terminal,
   Layers,
   ShieldCheck,
+  X,
+  Phone,
 } from "lucide-react";
 
 export const Route = createFileRoute("/")({
@@ -21,11 +23,11 @@ export const Route = createFileRoute("/")({
 });
 
 const WHATSAPP = "https://wa.me/972594820775";
-const TELEGRAM = "https://t.me/970594820775";
+const TELEGRAM = "https://t.me/ehabalhayekm";
 const EMAIL = "mailto:ehabalhayekm@gmail.com";
 const GITHUB = "https://github.com/ethanmarten/";
 
-type Category = "All" | "Web Design" | "AI & Automation" | "Tech Support & Systems";
+type Category = "All" | "Web Development" | "AI & Automation" | "Tech Support";
 
 type Project = {
   title: string;
@@ -33,31 +35,37 @@ type Project = {
   link: string;
   description: string;
   badges: string[];
+  details?: {
+    overview: string;
+    architecture: string[];
+    stats: { label: string; value: string }[];
+    insights: string[];
+  };
 };
 
 const PROJECTS: Project[] = [
   {
     title: "Vertex Estates",
-    category: "Web Design",
+    category: "Web Development",
     link: "https://vertex-elite.lovable.app",
     description:
-      "An ultra-luxury digital brand and corporate real estate platform built with premium aesthetics.",
+      "Luxury real estate platform with an ultra-premium brand system and corporate-grade UX.",
     badges: ["React", "Tailwind", "Premium UI"],
   },
   {
     title: "Chronos Elite",
-    category: "Web Design",
+    category: "Web Development",
     link: "https://chronos-elite.lovable.app",
     description:
-      "A high-end editorial horology e-commerce experience featuring dynamic cart drawer architectures.",
+      "High-end horology e-commerce store featuring dynamic cart drawer architecture and editorial storytelling.",
     badges: ["E-Commerce", "UX Design", "React"],
   },
   {
     title: "Effortless Elegance",
-    category: "Web Design",
+    category: "Web Development",
     link: "https://effortless-elegance.framer.ai",
     description:
-      "An avant-garde minimalist editorial branding site focusing on quiet luxury and timeless whitespace.",
+      "Minimalist editorial branding site focused on quiet luxury, whitespace, and typographic craft.",
     badges: ["Framer", "Minimalism", "Branding"],
   },
   {
@@ -65,28 +73,85 @@ const PROJECTS: Project[] = [
     category: "AI & Automation",
     link: "#",
     description:
-      "Custom Large Language Model (LLM) integration for production automated clipping pipelines and social curation.",
+      "Automated video clipping and social curation pipeline powered by custom LLM orchestration.",
     badges: ["Python", "LLM", "Automation"],
+    details: {
+      overview:
+        "A production pipeline that ingests long-form video, uses an LLM to identify high-signal moments, auto-clips them, and schedules distribution across social channels.",
+      architecture: [
+        "Ingestion worker → Whisper transcription → semantic chunking",
+        "LLM scoring agent ranks clip candidates against virality heuristics",
+        "FFmpeg render farm produces vertical / horizontal variants",
+        "Scheduler pushes to TikTok, Shorts, and Reels via provider APIs",
+      ],
+      stats: [
+        { label: "Avg. clips / video", value: "12" },
+        { label: "Manual editing removed", value: "94%" },
+        { label: "Cost per clip", value: "< $0.08" },
+      ],
+      insights: [
+        "Prompt-chained scoring beat single-shot classification by 38%.",
+        "Caching transcripts + embeddings cut LLM spend by ~60%.",
+      ],
+    },
   },
   {
-    title: "Unity 6 AI Navigation System",
+    title: "Unity 6 AI Navigation Node",
     category: "AI & Automation",
     link: "#",
     description:
-      "Configuring advanced workstation nodes using NVIDIA CUDA for seamless pathfinding and real-time AI simulations.",
+      "Workstation node optimization for real-time pathfinding and AI simulation using NVIDIA CUDA.",
     badges: ["Unity 6", "CUDA", "AI Engineering"],
+    details: {
+      overview:
+        "A dedicated workstation node tuned for Unity 6's AI navigation stack — offloading pathfinding and behavioural simulation to CUDA cores for real-time responsiveness at scale.",
+      architecture: [
+        "NVIDIA CUDA-accelerated NavMesh baking pipeline",
+        "Parallel A* + flow-field pathfinding across thousands of agents",
+        "Deterministic tick scheduler for reproducible AI behavior",
+        "Telemetry hooks streaming frame-time and GPU utilization",
+      ],
+      stats: [
+        { label: "Concurrent agents", value: "5,000+" },
+        { label: "Avg. frame time", value: "6.2 ms" },
+        { label: "GPU utilization", value: "82%" },
+      ],
+      insights: [
+        "Batching path requests per frame eliminated 70% of kernel launches.",
+        "Thermal tuning kept sustained boost within 3°C of target.",
+      ],
+    },
   },
   {
-    title: "High-Performance Systems Tuning",
-    category: "Tech Support & Systems",
+    title: "High-Performance Workstation Tuning",
+    category: "Tech Support",
     link: "#",
     description:
-      "System health diagnostic matrices, advanced hardware thermal optimization, and high-security enterprise troubleshooting.",
+      "3+ years optimizing system health, thermals, and enterprise hardware across mission-critical workstations.",
     badges: ["Diagnostics", "Hardware", "Security"],
+    details: {
+      overview:
+        "Long-term engagements tuning enterprise workstations and small-fleet infrastructure — from thermal engineering and kernel-level diagnostics to secure remote access playbooks.",
+      architecture: [
+        "Structured diagnostic matrix (POST → kernel → user-space)",
+        "Undervolt + fan curve tuning for sustained boost stability",
+        "Driver + firmware baseline pinned per workstation profile",
+        "Encrypted remote support pipeline with audit logging",
+      ],
+      stats: [
+        { label: "Workstations serviced", value: "80+" },
+        { label: "Avg. temp reduction", value: "-14°C" },
+        { label: "First-call resolution", value: "91%" },
+      ],
+      insights: [
+        "Most 'GPU' failures were PSU rail sag under transient load.",
+        "A pinned driver baseline cut recurring tickets by nearly half.",
+      ],
+    },
   },
 ];
 
-const CATEGORIES: Category[] = ["All", "Web Design", "AI & Automation", "Tech Support & Systems"];
+const CATEGORIES: Category[] = ["All", "Web Development", "AI & Automation", "Tech Support"];
 
 function Index() {
   return (
@@ -139,7 +204,7 @@ function Header() {
         <a
           href={TELEGRAM}
           target="_blank"
-          rel="noreferrer"
+          rel="noopener noreferrer"
           className="group inline-flex items-center gap-2 rounded-full border border-emerald-accent/50 bg-emerald-accent/10 px-4 py-2 text-xs font-semibold tracking-wide text-emerald-accent transition-all hover:bg-emerald-accent hover:text-primary-foreground"
         >
           Inquire Now
@@ -161,7 +226,7 @@ function Hero() {
         <div className="inline-flex items-center gap-2 rounded-full border border-emerald-accent/40 bg-emerald-accent/5 px-3 py-1.5 text-xs font-medium">
           <span className="pulse-dot inline-block h-2 w-2 rounded-full bg-emerald-accent" />
           <span className="font-mono tracking-wide text-emerald-accent">SYSTEM ONLINE</span>
-          <span className="text-muted-foreground">/ Open for Contracts</span>
+          <span className="text-muted-foreground">/ Available for Custom Tech & Web Contracts</span>
         </div>
 
         <h1 className="mt-8 max-w-5xl text-balance text-5xl font-extrabold leading-[1.02] tracking-tight md:text-7xl lg:text-[5.5rem]">
@@ -172,9 +237,9 @@ function Hero() {
         </h1>
 
         <p className="mt-8 max-w-2xl text-lg leading-relaxed text-muted-foreground">
-          AI Engineering Student & Web Developer with <span className="text-foreground font-semibold">3+ years</span> of
-          professional technical support experience. Bridging the gap between complex algorithms and
-          pixel-perfect user interfaces.
+          AI Engineering Student at the <span className="text-foreground font-semibold">Islamic University of Gaza</span> &
+          Web Developer with <span className="text-foreground font-semibold">3+ years</span> of professional technical
+          support experience. Bridging the gap between complex algorithms and pixel-perfect user interfaces.
         </p>
 
         <div className="mt-10 flex flex-wrap items-center gap-3">
@@ -188,10 +253,29 @@ function Hero() {
           <a
             href="https://ehabmohammed.carrd.co"
             target="_blank"
-            rel="noreferrer"
+            rel="noopener noreferrer"
             className="inline-flex items-center gap-2 rounded-full border border-hairline bg-surface px-6 py-3 text-sm font-semibold text-foreground transition-colors hover:border-emerald-accent/60 hover:text-emerald-accent"
           >
             Start a Conversation
+          </a>
+        </div>
+
+        <div className="mt-8 flex flex-wrap items-center gap-2">
+          <a
+            href={EMAIL}
+            className="group inline-flex items-center gap-2 rounded-full border border-hairline bg-surface/60 px-4 py-2 text-xs font-medium text-muted-foreground transition-all hover:border-emerald-accent/60 hover:text-emerald-accent"
+          >
+            <Mail className="h-3.5 w-3.5" />
+            ehabalhayekm@gmail.com
+          </a>
+          <a
+            href={WHATSAPP}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group inline-flex items-center gap-2 rounded-full border border-hairline bg-surface/60 px-4 py-2 text-xs font-medium text-muted-foreground transition-all hover:border-emerald-accent/60 hover:text-emerald-accent"
+          >
+            <Phone className="h-3.5 w-3.5" />
+            +972 59-482-0775
           </a>
         </div>
 
@@ -257,6 +341,7 @@ function About() {
 
 function Projects() {
   const [active, setActive] = useState<Category>("All");
+  const [openProject, setOpenProject] = useState<Project | null>(null);
   const filtered = useMemo(
     () => (active === "All" ? PROJECTS : PROJECTS.filter((p) => p.category === active)),
     [active],
@@ -272,67 +357,60 @@ function Projects() {
               Projects across design, intelligence, and infrastructure.
             </h2>
           </div>
-          <div className="flex flex-wrap gap-2">
-            {CATEGORIES.map((c) => (
-              <button
-                key={c}
-                onClick={() => setActive(c)}
-                className={[
-                  "rounded-full border px-4 py-2 text-xs font-medium transition-all",
-                  active === c
-                    ? "border-emerald-accent bg-emerald-accent text-primary-foreground"
-                    : "border-hairline bg-surface text-muted-foreground hover:border-emerald-accent/50 hover:text-foreground",
-                ].join(" ")}
-              >
-                {c}
-              </button>
-            ))}
+          <div className="-mx-6 md:mx-0">
+            <div
+              className="flex gap-2 overflow-x-auto px-6 pb-1 md:flex-wrap md:overflow-visible md:px-0 md:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+              role="tablist"
+              aria-label="Project categories"
+            >
+              {CATEGORIES.map((c) => (
+                <button
+                  key={c}
+                  onClick={() => setActive(c)}
+                  role="tab"
+                  aria-selected={active === c}
+                  className={[
+                    "shrink-0 whitespace-nowrap rounded-full border px-4 py-2 text-xs font-medium transition-all",
+                    active === c
+                      ? "border-emerald-accent bg-emerald-accent text-primary-foreground"
+                      : "border-hairline bg-surface text-muted-foreground hover:border-emerald-accent/50 hover:text-foreground",
+                  ].join(" ")}
+                >
+                  {c}
+                </button>
+              ))}
+            </div>
           </div>
         </div>
 
         <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {filtered.map((p) => (
-            <ProjectCard key={p.title} project={p} />
+            <ProjectCard key={p.title} project={p} onOpen={() => setOpenProject(p)} />
           ))}
         </div>
+        <ProjectModal project={openProject} onClose={() => setOpenProject(null)} />
       </div>
     </section>
   );
 }
 
-function ProjectCard({ project }: { project: Project }) {
-  const inactive = project.link === "#";
-  const Wrapper: React.ElementType = inactive ? "div" : "a";
-  const wrapperProps = inactive
-    ? {}
-    : { href: project.link, target: "_blank", rel: "noreferrer" };
+function ProjectCard({ project, onOpen }: { project: Project; onOpen: () => void }) {
+  const isCaseStudy = project.link === "#";
+  const commonClass =
+    "group relative flex flex-col overflow-hidden rounded-2xl border border-hairline bg-surface p-6 text-left transition-all duration-500 animate-fade-in hover:-translate-y-1 hover:border-emerald-accent/50 hover:bg-surface-2";
 
-  return (
-    <Wrapper
-      {...wrapperProps}
-      className={[
-        "group relative flex flex-col overflow-hidden rounded-2xl border border-hairline bg-surface p-6 transition-all duration-500 animate-fade-in",
-        inactive
-          ? "opacity-90"
-          : "hover:-translate-y-1 hover:border-emerald-accent/50 hover:bg-surface-2",
-      ].join(" ")}
-    >
+  const content = (
+    <>
       <div className="flex items-start justify-between">
         <div className="inline-flex items-center gap-2 rounded-full border border-hairline bg-background/60 px-3 py-1 font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
           <span
             className={`h-1.5 w-1.5 rounded-full ${
-              inactive ? "bg-muted-foreground" : "bg-emerald-accent"
+              isCaseStudy ? "bg-cyan-accent" : "bg-emerald-accent"
             }`}
           />
           {project.category}
         </div>
-        {inactive ? (
-          <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
-            Case Study
-          </span>
-        ) : (
-          <ArrowUpRight className="h-5 w-5 text-muted-foreground transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-emerald-accent" />
-        )}
+        <ArrowUpRight className="h-5 w-5 text-muted-foreground transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-emerald-accent" />
       </div>
 
       <h3 className="mt-8 text-2xl font-bold tracking-tight">{project.title}</h3>
@@ -347,8 +425,142 @@ function ProjectCard({ project }: { project: Project }) {
             {b}
           </span>
         ))}
+        {isCaseStudy && (
+          <span className="ml-auto font-mono text-[10px] uppercase tracking-widest text-emerald-accent">
+            View Case Study →
+          </span>
+        )}
       </div>
-    </Wrapper>
+    </>
+  );
+
+  if (isCaseStudy) {
+    return (
+      <button type="button" onClick={onOpen} className={commonClass}>
+        {content}
+      </button>
+    );
+  }
+  return (
+    <a
+      href={project.link}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={commonClass}
+    >
+      {content}
+    </a>
+  );
+}
+
+function ProjectModal({ project, onClose }: { project: Project | null; onClose: () => void }) {
+  useEffect(() => {
+    if (!project) return;
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && onClose();
+    document.addEventListener("keydown", onKey);
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.body.style.overflow = prev;
+    };
+  }, [project, onClose]);
+
+  if (!project || !project.details) return null;
+  const d = project.details;
+
+  return (
+    <div
+      className="fixed inset-0 z-[100] flex items-end justify-center bg-background/70 p-0 backdrop-blur-md sm:items-center sm:p-6 animate-fade-in"
+      onClick={onClose}
+      role="dialog"
+      aria-modal="true"
+      aria-label={project.title}
+    >
+      <div
+        onClick={(e) => e.stopPropagation()}
+        className="relative w-full max-w-2xl overflow-hidden rounded-t-3xl border border-hairline bg-surface shadow-2xl sm:rounded-2xl"
+      >
+        <div className="absolute -right-24 -top-24 h-64 w-64 rounded-full bg-emerald-accent/15 blur-3xl" />
+        <div className="relative max-h-[85vh] overflow-y-auto p-6 sm:p-8">
+          <div className="flex items-start justify-between gap-4">
+            <div className="min-w-0">
+              <div className="inline-flex items-center gap-2 rounded-full border border-emerald-accent/40 bg-emerald-accent/10 px-3 py-1 font-mono text-[10px] uppercase tracking-widest text-emerald-accent">
+                <span className="h-1.5 w-1.5 rounded-full bg-emerald-accent" />
+                {project.category} · Case Study
+              </div>
+              <h3 className="mt-4 text-2xl font-bold tracking-tight sm:text-3xl">
+                {project.title}
+              </h3>
+            </div>
+            <button
+              type="button"
+              onClick={onClose}
+              aria-label="Close"
+              className="grid h-9 w-9 shrink-0 place-items-center rounded-full border border-hairline bg-background/60 text-muted-foreground transition-colors hover:border-emerald-accent/60 hover:text-emerald-accent"
+            >
+              <X className="h-4 w-4" />
+            </button>
+          </div>
+
+          <p className="mt-6 text-sm leading-relaxed text-muted-foreground sm:text-base">
+            {d.overview}
+          </p>
+
+          <div className="mt-6 grid grid-cols-3 gap-px overflow-hidden rounded-xl border border-hairline bg-hairline">
+            {d.stats.map((s) => (
+              <div key={s.label} className="bg-background/60 p-4">
+                <div className="font-mono text-lg font-bold text-emerald-accent sm:text-xl">
+                  {s.value}
+                </div>
+                <div className="mt-1 text-[10px] uppercase tracking-widest text-muted-foreground">
+                  {s.label}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-8">
+            <div className="font-mono text-[10px] uppercase tracking-[0.25em] text-emerald-accent">
+              Architecture
+            </div>
+            <ul className="mt-3 space-y-2">
+              {d.architecture.map((a) => (
+                <li key={a} className="flex gap-3 text-sm text-muted-foreground">
+                  <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-emerald-accent" />
+                  <span>{a}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="mt-8">
+            <div className="font-mono text-[10px] uppercase tracking-[0.25em] text-emerald-accent">
+              Source Insights
+            </div>
+            <ul className="mt-3 space-y-2">
+              {d.insights.map((i) => (
+                <li key={i} className="flex gap-3 text-sm text-muted-foreground">
+                  <Sparkles className="mt-0.5 h-3.5 w-3.5 shrink-0 text-emerald-accent" />
+                  <span>{i}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="mt-8 flex flex-wrap gap-2 border-t border-hairline pt-6">
+            {project.badges.map((b) => (
+              <span
+                key={b}
+                className="rounded-md border border-hairline bg-background/60 px-2.5 py-1 font-mono text-[11px] text-muted-foreground"
+              >
+                {b}
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
 
@@ -358,10 +570,10 @@ function Timeline() {
   const items = [
     {
       icon: GraduationCap,
-      period: "Present",
+      period: "2025 — Present",
       title: "B.Sc. Artificial Intelligence Engineering",
       org: "Islamic University of Gaza",
-      body: "Deep focus on Large Language Models, pathfinding algorithms, and CUDA-accelerated compute for real-time AI simulation.",
+      body: "Focus on LLM integration, autonomous agents, system architecture, and CUDA-accelerated compute for real-time AI simulation.",
       tag: "Academic",
     },
     {
@@ -369,7 +581,7 @@ function Timeline() {
       period: "3+ Years",
       title: "Technical Support Specialist",
       org: "Enterprise & SMB Infrastructure",
-      body: "Infrastructure management, hardware diagnosis, and operating system kernel troubleshooting across mission-critical deployments.",
+      body: "Hardware diagnostics, CUDA workstation configurations, and infrastructure troubleshooting across mission-critical deployments.",
       tag: "Professional",
     },
   ];
@@ -525,7 +737,7 @@ function Contact() {
               key={c.label}
               href={c.href}
               target={c.href.startsWith("mailto") ? undefined : "_blank"}
-              rel="noreferrer"
+              rel="noopener noreferrer"
               className="group relative flex flex-col overflow-hidden rounded-2xl border border-hairline bg-surface p-6 transition-all hover:-translate-y-1 hover:border-emerald-accent/60 hover:bg-surface-2"
             >
               <div className="flex items-center justify-between">
@@ -567,16 +779,16 @@ function Footer() {
           </div>
         </div>
         <div className="flex items-center gap-4">
-          <a href={WHATSAPP} target="_blank" rel="noreferrer" aria-label="WhatsApp" className="text-muted-foreground transition-colors hover:text-emerald-accent">
+          <a href={WHATSAPP} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" className="text-muted-foreground transition-colors hover:text-emerald-accent">
             <MessageCircle className="h-5 w-5" />
           </a>
-          <a href={TELEGRAM} target="_blank" rel="noreferrer" aria-label="Telegram" className="text-muted-foreground transition-colors hover:text-emerald-accent">
+          <a href={TELEGRAM} target="_blank" rel="noopener noreferrer" aria-label="Telegram" className="text-muted-foreground transition-colors hover:text-emerald-accent">
             <Send className="h-5 w-5" />
           </a>
           <a href={EMAIL} aria-label="Email" className="text-muted-foreground transition-colors hover:text-emerald-accent">
             <Mail className="h-5 w-5" />
           </a>
-          <a href={GITHUB} target="_blank" rel="noreferrer" aria-label="GitHub" className="text-muted-foreground transition-colors hover:text-emerald-accent">
+          <a href={GITHUB} target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="text-muted-foreground transition-colors hover:text-emerald-accent">
             <Github className="h-5 w-5" />
           </a>
         </div>
