@@ -778,9 +778,11 @@ function Footer() {
     <footer className="border-t border-hairline">
       <div className="mx-auto flex max-w-7xl flex-col gap-6 px-6 py-10 md:flex-row md:items-center md:justify-between">
         <div className="flex items-center gap-3">
-          <span className="grid h-8 w-8 place-items-center rounded-md border border-emerald-accent/40 bg-emerald-accent/10 font-mono text-sm font-bold text-emerald-accent">
-            E
-          </span>
+          <img
+            src={logo}
+            alt="Ethan / Ehab Alhayek monogram"
+            className="h-10 w-10 rounded-full ring-1 ring-emerald-accent/40"
+          />
           <div>
             <div className="text-sm font-semibold tracking-[0.14em]">
               ETHAN <span className="text-muted-foreground">/</span> EHAB ALHAYEK
