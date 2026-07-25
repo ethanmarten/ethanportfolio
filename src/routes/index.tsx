@@ -16,7 +16,9 @@ import {
   ShieldCheck,
   X,
   Phone,
+  Download,
 } from "lucide-react";
+import logo from "../assets/logo.png";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -183,9 +185,11 @@ function Header() {
     <header className="sticky top-0 z-50 border-b border-hairline bg-background/70 backdrop-blur-xl">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
         <a href="#top" className="group flex items-center gap-2">
-          <span className="grid h-8 w-8 place-items-center rounded-md border border-emerald-accent/40 bg-emerald-accent/10 font-mono text-sm font-bold text-emerald-accent">
-            E
-          </span>
+          <img
+            src={logo}
+            alt="Ehab Alhayek monogram"
+            className="h-9 w-9 rounded-full ring-1 ring-emerald-accent/30 transition-transform group-hover:scale-105"
+          />
           <span className="hidden text-sm font-semibold tracking-[0.14em] sm:inline">
             ETHAN <span className="text-muted-foreground">/</span> EHAB ALHAYEK
           </span>
@@ -257,6 +261,14 @@ function Hero() {
             className="inline-flex items-center gap-2 rounded-full border border-hairline bg-surface px-6 py-3 text-sm font-semibold text-foreground transition-colors hover:border-emerald-accent/60 hover:text-emerald-accent"
           >
             Start a Conversation
+          </a>
+          <a
+            href="/ehab-alhayek-cv.pdf"
+            download="Ehab-Alhayek-CV.pdf"
+            className="inline-flex items-center gap-2 rounded-full border border-emerald-accent/40 bg-emerald-accent/10 px-6 py-3 text-sm font-semibold text-emerald-accent transition-all hover:bg-emerald-accent hover:text-primary-foreground"
+          >
+            <Download className="h-4 w-4" />
+            Download CV
           </a>
         </div>
 
