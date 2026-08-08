@@ -369,12 +369,30 @@ function Projects() {
     <section id="projects" className="border-t border-hairline">
       <div className="mx-auto max-w-7xl px-6 py-24">
         <div className="flex flex-col justify-between gap-8 md:flex-row md:items-end">
-          <div>
+          <Reveal className="max-w-3xl">
             <SectionLabel index="02" label="Selected Work" inline />
             <h2 className="mt-4 max-w-2xl text-3xl font-bold tracking-tight md:text-5xl">
               Projects across design, intelligence, and infrastructure.
             </h2>
-          </div>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <a
+                href={GITHUB}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group inline-flex items-center gap-2 rounded-full bg-emerald-accent px-6 py-3 text-sm font-semibold text-primary-foreground transition-all hover:-translate-y-0.5 hover:glow-emerald"
+              >
+                View All Projects
+                <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+              </a>
+              <a
+                href="#contact"
+                className="inline-flex items-center gap-2 rounded-full border border-hairline bg-surface px-6 py-3 text-sm font-semibold text-foreground transition-all hover:-translate-y-0.5 hover:border-emerald-accent/60"
+              >
+                <Mail className="h-4 w-4 text-emerald-accent" />
+                Get in Touch
+              </a>
+            </div>
+          </Reveal>
           <div className="-mx-6 md:mx-0">
             <div
               className="flex gap-2 overflow-x-auto px-6 pb-1 md:flex-wrap md:overflow-visible md:px-0 md:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
@@ -402,10 +420,41 @@ function Projects() {
         </div>
 
         <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {filtered.map((p) => (
-            <ProjectCard key={p.title} project={p} onOpen={() => setOpenProject(p)} />
+          {filtered.map((p, i) => (
+            <Reveal key={p.title} delay={i * 80} className="flex">
+              <ProjectCard project={p} onOpen={() => setOpenProject(p)} />
+            </Reveal>
           ))}
         </div>
+
+        <Reveal delay={120}>
+          <div className="mt-16 flex flex-col items-center gap-4 rounded-2xl border border-hairline bg-surface px-6 py-12 text-center">
+            <h3 className="text-2xl font-bold tracking-tight md:text-3xl">
+              Have a project in mind?
+            </h3>
+            <p className="max-w-xl text-sm text-muted-foreground md:text-base">
+              From premium web builds to AI automation pipelines — let's scope it together.
+            </p>
+            <div className="mt-2 flex flex-wrap justify-center gap-3">
+              <a
+                href="#contact"
+                className="group inline-flex items-center gap-2 rounded-full bg-emerald-accent px-7 py-3 text-sm font-semibold text-primary-foreground transition-all hover:-translate-y-0.5 hover:glow-emerald"
+              >
+                Get in Touch
+                <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+              </a>
+              <a
+                href={GITHUB}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-full border border-hairline bg-background px-7 py-3 text-sm font-semibold text-foreground transition-all hover:-translate-y-0.5 hover:border-emerald-accent/60"
+              >
+                <Github className="h-4 w-4 text-emerald-accent" />
+                View All Projects
+              </a>
+            </div>
+          </div>
+        </Reveal>
         <ProjectModal project={openProject} onClose={() => setOpenProject(null)} />
       </div>
     </section>
