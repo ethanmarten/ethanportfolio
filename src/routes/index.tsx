@@ -341,13 +341,11 @@ function About() {
               { icon: Code2, label: "Web Craft" },
               { icon: ShieldCheck, label: "Systems" },
             ].map(({ icon: Icon, label }, i) => (
-              <Reveal
-                key={label}
-                delay={150 + i * 90}
-                className="rounded-xl border border-hairline bg-surface p-4 transition-colors hover:border-emerald-accent/40"
-              >
-                <Icon className="h-5 w-5 text-emerald-accent" />
-                <div className="mt-3 text-sm font-semibold">{label}</div>
+              <Reveal key={label} delay={150 + i * 90}>
+                <div className="rounded-xl border border-hairline bg-surface p-4 hover:border-emerald-accent/40">
+                  <Icon className="h-5 w-5 text-emerald-accent" />
+                  <div className="mt-3 text-sm font-semibold">{label}</div>
+                </div>
               </Reveal>
             ))}
           </div>
