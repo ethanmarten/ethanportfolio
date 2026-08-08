@@ -19,6 +19,7 @@ import {
   Download,
 } from "lucide-react";
 import logo from "../assets/logo.png";
+import { Reveal } from "@/components/Reveal";
 
 export const Route = createFileRoute("/")({
   component: Index,
