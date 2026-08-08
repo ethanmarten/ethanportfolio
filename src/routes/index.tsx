@@ -464,7 +464,7 @@ function Projects() {
 function ProjectCard({ project, onOpen }: { project: Project; onOpen: () => void }) {
   const isCaseStudy = project.link === "#";
   const commonClass =
-    "group relative flex flex-col overflow-hidden rounded-2xl border border-hairline bg-surface p-6 text-left transition-all duration-500 animate-fade-in hover:-translate-y-1 hover:border-emerald-accent/50 hover:bg-surface-2";
+    "group relative flex w-full flex-col overflow-hidden rounded-2xl border border-hairline bg-surface p-6 text-left transition-all duration-500 hover:-translate-y-1 hover:border-emerald-accent/50 hover:bg-surface-2";
 
   const content = (
     <>
