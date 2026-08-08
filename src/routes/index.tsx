@@ -19,6 +19,7 @@ import {
   Download,
 } from "lucide-react";
 import logo from "../assets/logo.png";
+import { Reveal } from "@/components/Reveal";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -317,30 +318,35 @@ function About() {
   return (
     <section id="about" className="border-t border-hairline">
       <div className="mx-auto grid max-w-7xl gap-16 px-6 py-24 md:grid-cols-[1fr_1.4fr]">
-        <SectionLabel index="01" label="About" />
+        <Reveal>
+          <SectionLabel index="01" label="About" />
+        </Reveal>
         <div>
+          <Reveal>
           <h2 className="text-3xl font-bold leading-tight tracking-tight md:text-4xl">
             A hybrid operator — half systems engineer, half interface designer.
           </h2>
+          </Reveal>
+          <Reveal delay={100}>
           <p className="mt-6 text-lg leading-relaxed text-muted-foreground">
             I'm Ehab (Ethan) Alhayek — an AI Engineering student at the Islamic University of Gaza
             with a technical support background rooted in hardware, kernels, and infrastructure.
             I build production-grade web experiences and LLM-powered automation for teams that
             demand both aesthetic precision and engineering rigor.
           </p>
+          </Reveal>
           <div className="mt-10 grid gap-4 sm:grid-cols-3">
             {[
               { icon: Cpu, label: "AI & LLMs" },
               { icon: Code2, label: "Web Craft" },
               { icon: ShieldCheck, label: "Systems" },
-            ].map(({ icon: Icon, label }) => (
-              <div
-                key={label}
-                className="rounded-xl border border-hairline bg-surface p-4 transition-colors hover:border-emerald-accent/40"
-              >
-                <Icon className="h-5 w-5 text-emerald-accent" />
-                <div className="mt-3 text-sm font-semibold">{label}</div>
-              </div>
+            ].map(({ icon: Icon, label }, i) => (
+              <Reveal key={label} delay={150 + i * 90}>
+                <div className="rounded-xl border border-hairline bg-surface p-4 hover:border-emerald-accent/40">
+                  <Icon className="h-5 w-5 text-emerald-accent" />
+                  <div className="mt-3 text-sm font-semibold">{label}</div>
+                </div>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -363,12 +369,30 @@ function Projects() {
     <section id="projects" className="border-t border-hairline">
       <div className="mx-auto max-w-7xl px-6 py-24">
         <div className="flex flex-col justify-between gap-8 md:flex-row md:items-end">
-          <div>
+          <Reveal className="max-w-3xl">
             <SectionLabel index="02" label="Selected Work" inline />
             <h2 className="mt-4 max-w-2xl text-3xl font-bold tracking-tight md:text-5xl">
               Projects across design, intelligence, and infrastructure.
             </h2>
-          </div>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <a
+                href={GITHUB}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group inline-flex items-center gap-2 rounded-full bg-emerald-accent px-6 py-3 text-sm font-semibold text-primary-foreground transition-all hover:-translate-y-0.5 hover:glow-emerald"
+              >
+                View All Projects
+                <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+              </a>
+              <a
+                href="#contact"
+                className="inline-flex items-center gap-2 rounded-full border border-hairline bg-surface px-6 py-3 text-sm font-semibold text-foreground transition-all hover:-translate-y-0.5 hover:border-emerald-accent/60"
+              >
+                <Mail className="h-4 w-4 text-emerald-accent" />
+                Get in Touch
+              </a>
+            </div>
+          </Reveal>
           <div className="-mx-6 md:mx-0">
             <div
               className="flex gap-2 overflow-x-auto px-6 pb-1 md:flex-wrap md:overflow-visible md:px-0 md:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
@@ -396,10 +420,41 @@ function Projects() {
         </div>
 
         <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {filtered.map((p) => (
-            <ProjectCard key={p.title} project={p} onOpen={() => setOpenProject(p)} />
+          {filtered.map((p, i) => (
+            <Reveal key={p.title} delay={i * 80} className="flex">
+              <ProjectCard project={p} onOpen={() => setOpenProject(p)} />
+            </Reveal>
           ))}
         </div>
+
+        <Reveal delay={120}>
+          <div className="mt-16 flex flex-col items-center gap-4 rounded-2xl border border-hairline bg-surface px-6 py-12 text-center">
+            <h3 className="text-2xl font-bold tracking-tight md:text-3xl">
+              Have a project in mind?
+            </h3>
+            <p className="max-w-xl text-sm text-muted-foreground md:text-base">
+              From premium web builds to AI automation pipelines — let's scope it together.
+            </p>
+            <div className="mt-2 flex flex-wrap justify-center gap-3">
+              <a
+                href="#contact"
+                className="group inline-flex items-center gap-2 rounded-full bg-emerald-accent px-7 py-3 text-sm font-semibold text-primary-foreground transition-all hover:-translate-y-0.5 hover:glow-emerald"
+              >
+                Get in Touch
+                <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+              </a>
+              <a
+                href={GITHUB}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-full border border-hairline bg-background px-7 py-3 text-sm font-semibold text-foreground transition-all hover:-translate-y-0.5 hover:border-emerald-accent/60"
+              >
+                <Github className="h-4 w-4 text-emerald-accent" />
+                View All Projects
+              </a>
+            </div>
+          </div>
+        </Reveal>
         <ProjectModal project={openProject} onClose={() => setOpenProject(null)} />
       </div>
     </section>
@@ -409,7 +464,7 @@ function Projects() {
 function ProjectCard({ project, onOpen }: { project: Project; onOpen: () => void }) {
   const isCaseStudy = project.link === "#";
   const commonClass =
-    "group relative flex flex-col overflow-hidden rounded-2xl border border-hairline bg-surface p-6 text-left transition-all duration-500 animate-fade-in hover:-translate-y-1 hover:border-emerald-accent/50 hover:bg-surface-2";
+    "group relative flex w-full flex-col overflow-hidden rounded-2xl border border-hairline bg-surface p-6 text-left transition-all duration-500 hover:-translate-y-1 hover:border-emerald-accent/50 hover:bg-surface-2";
 
   const content = (
     <>
@@ -600,15 +655,17 @@ function Timeline() {
   return (
     <section id="experience" className="border-t border-hairline">
       <div className="mx-auto max-w-7xl px-6 py-24">
-        <SectionLabel index="03" label="Trajectory" inline />
-        <h2 className="mt-4 max-w-2xl text-3xl font-bold tracking-tight md:text-5xl">
-          Education & professional experience.
-        </h2>
+        <Reveal>
+          <SectionLabel index="03" label="Trajectory" inline />
+          <h2 className="mt-4 max-w-2xl text-3xl font-bold tracking-tight md:text-5xl">
+            Education & professional experience.
+          </h2>
+        </Reveal>
 
         <div className="relative mt-16 space-y-10 pl-6 md:pl-10">
           <div className="absolute left-2 top-2 h-full w-px bg-gradient-to-b from-emerald-accent via-hairline to-transparent md:left-4" />
-          {items.map((it) => (
-            <div key={it.title} className="relative">
+          {items.map((it, i) => (
+            <Reveal key={it.title} delay={i * 100} className="relative">
               <div className="absolute -left-[26px] top-1.5 h-4 w-4 rounded-full border-2 border-emerald-accent bg-background md:-left-[34px]" />
               <div className="grid gap-6 rounded-2xl border border-hairline bg-surface p-6 md:grid-cols-[auto_1fr] md:p-8">
                 <div className="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-emerald-accent/10 text-emerald-accent">
@@ -628,7 +685,7 @@ function Timeline() {
                   </p>
                 </div>
               </div>
-            </div>
+            </Reveal>
           ))}
         </div>
       </div>
@@ -659,17 +716,17 @@ function Skills() {
   return (
     <section id="skills" className="border-t border-hairline">
       <div className="mx-auto max-w-7xl px-6 py-24">
-        <SectionLabel index="04" label="Capability Matrix" inline />
-        <h2 className="mt-4 max-w-2xl text-3xl font-bold tracking-tight md:text-5xl">
-          The stack behind the work.
-        </h2>
+        <Reveal>
+          <SectionLabel index="04" label="Capability Matrix" inline />
+          <h2 className="mt-4 max-w-2xl text-3xl font-bold tracking-tight md:text-5xl">
+            The stack behind the work.
+          </h2>
+        </Reveal>
 
         <div className="mt-14 grid gap-6 md:grid-cols-3">
-          {groups.map((g) => (
-            <div
-              key={g.title}
-              className="group relative overflow-hidden rounded-2xl border border-hairline bg-surface p-6 transition-all hover:border-emerald-accent/40"
-            >
+          {groups.map((g, i) => (
+            <Reveal key={g.title} delay={i * 100}>
+            <div className="group relative h-full overflow-hidden rounded-2xl border border-hairline bg-surface p-6 hover:border-emerald-accent/40">
               <div className="absolute -right-16 -top-16 h-40 w-40 rounded-full bg-emerald-accent/10 opacity-0 blur-3xl transition-opacity group-hover:opacity-100" />
               <div className="relative flex items-center gap-3">
                 <div className="grid h-10 w-10 place-items-center rounded-lg bg-emerald-accent/10 text-emerald-accent">
@@ -689,6 +746,7 @@ function Skills() {
                 ))}
               </ul>
             </div>
+            </Reveal>
           ))}
         </div>
       </div>
