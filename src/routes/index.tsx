@@ -655,15 +655,17 @@ function Timeline() {
   return (
     <section id="experience" className="border-t border-hairline">
       <div className="mx-auto max-w-7xl px-6 py-24">
-        <SectionLabel index="03" label="Trajectory" inline />
-        <h2 className="mt-4 max-w-2xl text-3xl font-bold tracking-tight md:text-5xl">
-          Education & professional experience.
-        </h2>
+        <Reveal>
+          <SectionLabel index="03" label="Trajectory" inline />
+          <h2 className="mt-4 max-w-2xl text-3xl font-bold tracking-tight md:text-5xl">
+            Education & professional experience.
+          </h2>
+        </Reveal>
 
         <div className="relative mt-16 space-y-10 pl-6 md:pl-10">
           <div className="absolute left-2 top-2 h-full w-px bg-gradient-to-b from-emerald-accent via-hairline to-transparent md:left-4" />
-          {items.map((it) => (
-            <div key={it.title} className="relative">
+          {items.map((it, i) => (
+            <Reveal key={it.title} delay={i * 100} className="relative">
               <div className="absolute -left-[26px] top-1.5 h-4 w-4 rounded-full border-2 border-emerald-accent bg-background md:-left-[34px]" />
               <div className="grid gap-6 rounded-2xl border border-hairline bg-surface p-6 md:grid-cols-[auto_1fr] md:p-8">
                 <div className="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-emerald-accent/10 text-emerald-accent">
@@ -683,7 +685,7 @@ function Timeline() {
                   </p>
                 </div>
               </div>
-            </div>
+            </Reveal>
           ))}
         </div>
       </div>
@@ -714,17 +716,17 @@ function Skills() {
   return (
     <section id="skills" className="border-t border-hairline">
       <div className="mx-auto max-w-7xl px-6 py-24">
-        <SectionLabel index="04" label="Capability Matrix" inline />
-        <h2 className="mt-4 max-w-2xl text-3xl font-bold tracking-tight md:text-5xl">
-          The stack behind the work.
-        </h2>
+        <Reveal>
+          <SectionLabel index="04" label="Capability Matrix" inline />
+          <h2 className="mt-4 max-w-2xl text-3xl font-bold tracking-tight md:text-5xl">
+            The stack behind the work.
+          </h2>
+        </Reveal>
 
         <div className="mt-14 grid gap-6 md:grid-cols-3">
-          {groups.map((g) => (
-            <div
-              key={g.title}
-              className="group relative overflow-hidden rounded-2xl border border-hairline bg-surface p-6 transition-all hover:border-emerald-accent/40"
-            >
+          {groups.map((g, i) => (
+            <Reveal key={g.title} delay={i * 100}>
+            <div className="group relative h-full overflow-hidden rounded-2xl border border-hairline bg-surface p-6 hover:border-emerald-accent/40">
               <div className="absolute -right-16 -top-16 h-40 w-40 rounded-full bg-emerald-accent/10 opacity-0 blur-3xl transition-opacity group-hover:opacity-100" />
               <div className="relative flex items-center gap-3">
                 <div className="grid h-10 w-10 place-items-center rounded-lg bg-emerald-accent/10 text-emerald-accent">
@@ -744,6 +746,7 @@ function Skills() {
                 ))}
               </ul>
             </div>
+            </Reveal>
           ))}
         </div>
       </div>
