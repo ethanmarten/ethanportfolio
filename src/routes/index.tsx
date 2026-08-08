@@ -318,30 +318,37 @@ function About() {
   return (
     <section id="about" className="border-t border-hairline">
       <div className="mx-auto grid max-w-7xl gap-16 px-6 py-24 md:grid-cols-[1fr_1.4fr]">
-        <SectionLabel index="01" label="About" />
+        <Reveal>
+          <SectionLabel index="01" label="About" />
+        </Reveal>
         <div>
+          <Reveal>
           <h2 className="text-3xl font-bold leading-tight tracking-tight md:text-4xl">
             A hybrid operator — half systems engineer, half interface designer.
           </h2>
+          </Reveal>
+          <Reveal delay={100}>
           <p className="mt-6 text-lg leading-relaxed text-muted-foreground">
             I'm Ehab (Ethan) Alhayek — an AI Engineering student at the Islamic University of Gaza
             with a technical support background rooted in hardware, kernels, and infrastructure.
             I build production-grade web experiences and LLM-powered automation for teams that
             demand both aesthetic precision and engineering rigor.
           </p>
+          </Reveal>
           <div className="mt-10 grid gap-4 sm:grid-cols-3">
             {[
               { icon: Cpu, label: "AI & LLMs" },
               { icon: Code2, label: "Web Craft" },
               { icon: ShieldCheck, label: "Systems" },
-            ].map(({ icon: Icon, label }) => (
-              <div
+            ].map(({ icon: Icon, label }, i) => (
+              <Reveal
                 key={label}
+                delay={150 + i * 90}
                 className="rounded-xl border border-hairline bg-surface p-4 transition-colors hover:border-emerald-accent/40"
               >
                 <Icon className="h-5 w-5 text-emerald-accent" />
                 <div className="mt-3 text-sm font-semibold">{label}</div>
-              </div>
+              </Reveal>
             ))}
           </div>
         </div>
