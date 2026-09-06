@@ -192,7 +192,7 @@ function Header() {
             className="h-9 w-9 rounded-full ring-1 ring-emerald-accent/30 transition-transform group-hover:scale-105"
           />
           <span className="hidden text-sm font-semibold tracking-[0.14em] sm:inline">
-            ETHAN <span className="text-muted-foreground">/</span> EHAB ALHAYEK
+            EHAB ALHAYEK
           </span>
         </a>
         <nav className="hidden items-center gap-8 md:flex">
@@ -329,7 +329,7 @@ function About() {
           </Reveal>
           <Reveal delay={100}>
           <p className="mt-6 text-lg leading-relaxed text-muted-foreground">
-            I'm Ehab (Ethan) Alhayek — an AI Engineering student at the Islamic University of Gaza
+            I'm Ehab Alhayek — an AI Engineering student at the Islamic University of Gaza
             with a technical support background rooted in hardware, kernels, and infrastructure.
             I build production-grade web experiences and LLM-powered automation for teams that
             demand both aesthetic precision and engineering rigor.
@@ -838,12 +838,12 @@ function Footer() {
         <div className="flex items-center gap-3">
           <img
             src={logo}
-            alt="Ethan / Ehab Alhayek monogram"
+            alt="Ehab Alhayek monogram"
             className="h-10 w-10 rounded-full ring-1 ring-emerald-accent/40"
           />
           <div>
             <div className="text-sm font-semibold tracking-[0.14em]">
-              ETHAN <span className="text-muted-foreground">/</span> EHAB ALHAYEK
+              EHAB ALHAYEK
             </div>
             <div className="text-xs text-muted-foreground">
               © {new Date().getFullYear()} — Engineered with intent.
