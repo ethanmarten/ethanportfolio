@@ -18,7 +18,7 @@ import {
   Phone,
   Download,
 } from "lucide-react";
-import logo from "../assets/logo.png";
+import profilePhoto from "../assets/profile-photo.png";
 import { Reveal } from "@/components/Reveal";
 
 export const Route = createFileRoute("/")({
@@ -187,9 +187,9 @@ function Header() {
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
         <a href="#top" className="group flex items-center gap-2">
           <img
-            src={logo}
-            alt="Ehab Alhayek monogram"
-            className="h-9 w-9 rounded-full ring-1 ring-emerald-accent/30 transition-transform group-hover:scale-105"
+            src={profilePhoto}
+            alt="Ehab Alhayek"
+            className="h-9 w-9 rounded-full object-cover object-top ring-1 ring-emerald-accent/30 transition-transform group-hover:scale-105"
           />
           <span className="hidden text-sm font-semibold tracking-[0.14em] sm:inline">
             EHAB ALHAYEK
@@ -837,9 +837,9 @@ function Footer() {
       <div className="mx-auto flex max-w-7xl flex-col gap-6 px-6 py-10 md:flex-row md:items-center md:justify-between">
         <div className="flex items-center gap-3">
           <img
-            src={logo}
-            alt="Ehab Alhayek monogram"
-            className="h-10 w-10 rounded-full ring-1 ring-emerald-accent/40"
+            src={profilePhoto}
+            alt="Ehab Alhayek"
+            className="h-10 w-10 rounded-full object-cover object-top ring-1 ring-emerald-accent/40"
           />
           <div>
             <div className="text-sm font-semibold tracking-[0.14em]">
