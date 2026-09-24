@@ -228,26 +228,28 @@ function Hero() {
       <div className="absolute inset-0 grid-bg opacity-60 [mask-image:radial-gradient(ellipse_at_center,black_20%,transparent_75%)]" />
       <div className="absolute -top-40 left-1/2 h-[500px] w-[900px] -translate-x-1/2 rounded-full bg-emerald-accent/10 blur-3xl" />
       <div className="relative mx-auto max-w-7xl px-6 pb-28 pt-24 md:pt-32">
-        <div className="inline-flex items-center gap-2 rounded-full border border-emerald-accent/40 bg-emerald-accent/5 px-3 py-1.5 text-xs font-medium">
-          <span className="pulse-dot inline-block h-2 w-2 rounded-full bg-emerald-accent" />
-          <span className="font-mono tracking-wide text-emerald-accent">SYSTEM ONLINE</span>
-          <span className="text-muted-foreground">/ Available for Custom Tech & Web Contracts</span>
-        </div>
+        <div className="grid items-center gap-16 lg:grid-cols-[1.15fr_0.85fr] lg:gap-20">
+          <div>
+            <div className="inline-flex items-center gap-2 rounded-full border border-emerald-accent/40 bg-emerald-accent/5 px-3 py-1.5 text-xs font-medium">
+              <span className="pulse-dot inline-block h-2 w-2 rounded-full bg-emerald-accent" />
+              <span className="font-mono tracking-wide text-emerald-accent">SYSTEM ONLINE</span>
+              <span className="text-muted-foreground">/ Available for Custom Tech & Web Contracts</span>
+            </div>
 
-        <h1 className="mt-8 max-w-5xl text-balance text-5xl font-extrabold leading-[1.02] tracking-tight md:text-7xl lg:text-[5.5rem]">
-          Engineering{" "}
-          <span className="text-gradient">Intelligent Systems</span>
-          <br className="hidden md:block" /> & Crafting{" "}
-          <span className="italic font-light text-muted-foreground">Digital Experiences.</span>
-        </h1>
+            <h1 className="mt-8 max-w-5xl text-balance text-5xl font-extrabold leading-[1.02] tracking-tight md:text-7xl lg:text-[5.5rem]">
+              Engineering{" "}
+              <span className="text-gradient">Intelligent Systems</span>
+              <br className="hidden md:block" /> & Crafting{" "}
+              <span className="italic font-light text-muted-foreground">Digital Experiences.</span>
+            </h1>
 
-        <p className="mt-8 max-w-2xl text-lg leading-relaxed text-muted-foreground">
-          AI Engineering Student at the <span className="text-foreground font-semibold">Islamic University of Gaza</span> &
-          Web Developer with <span className="text-foreground font-semibold">3+ years</span> of professional technical
-          support experience. Bridging the gap between complex algorithms and pixel-perfect user interfaces.
-        </p>
+            <p className="mt-8 max-w-2xl text-lg leading-relaxed text-muted-foreground">
+              AI Engineering Student at the <span className="text-foreground font-semibold">Islamic University of Gaza</span> &
+              Web Developer with <span className="text-foreground font-semibold">3+ years</span> of professional technical
+              support experience. Bridging the gap between complex algorithms and pixel-perfect user interfaces.
+            </p>
 
-        <div className="mt-10 flex flex-wrap items-center gap-3">
+            <div className="mt-10 flex flex-wrap items-center gap-3">
           <a
             href="#projects"
             className="inline-flex items-center gap-2 rounded-full bg-emerald-accent px-6 py-3 text-sm font-semibold text-primary-foreground transition-all hover:brightness-110 glow-emerald"
@@ -271,9 +273,9 @@ function Hero() {
             <Download className="h-4 w-4" />
             Download CV
           </a>
-        </div>
+            </div>
 
-        <div className="mt-8 flex flex-wrap items-center gap-2">
+            <div className="mt-8 flex flex-wrap items-center gap-2">
           <a
             href={EMAIL}
             className="group inline-flex items-center gap-2 rounded-full border border-hairline bg-surface/60 px-4 py-2 text-xs font-medium text-muted-foreground transition-all hover:border-emerald-accent/60 hover:text-emerald-accent"
@@ -290,6 +292,21 @@ function Hero() {
             <Phone className="h-3.5 w-3.5" />
             +972 59-482-0775
           </a>
+            </div>
+          </div>
+
+          <div className="relative mx-auto w-full max-w-md lg:mx-0 lg:justify-self-end">
+            <div className="absolute -inset-4 rounded-[2.25rem] border border-emerald-accent/20" />
+            <div className="absolute -inset-10 rounded-full bg-emerald-accent/10 blur-3xl" />
+            <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem] border border-hairline bg-surface shadow-2xl shadow-black/30">
+              <img
+                src={profilePhoto}
+                alt="Ehab Alhayek in a black suit"
+                className="h-full w-full object-cover object-top grayscale-[15%]"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-background/45 via-transparent to-white/5" />
+            </div>
+          </div>
         </div>
 
         <div className="mt-20 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-hairline bg-hairline md:grid-cols-4">
