@@ -12,6 +12,21 @@ import { useEffect, type ReactNode } from "react";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 
+// كود الـ Schema.org لتعريف البيانات المنظمة لشخصيتك الرقمية
+const personSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Ehab Alhayek",
+  "alternateName": "Ethan",
+  "url": "https://emstudios.tech",
+  "jobTitle": "AI Engineer & Web Developer",
+  "sameAs": [
+    "https://www.linkedin.com/in/ehabmalhayek",
+    "https://github.com/ethanmarten",
+    "https://www.instagram.com/ehab.__.mohammed/"
+  ]
+};
+
 function NotFoundComponent() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
@@ -101,6 +116,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify(personSchema),
+      },
     ],
   }),
   shellComponent: RootShell,
