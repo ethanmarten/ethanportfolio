@@ -6,6 +6,7 @@ import {
   useRouter,
   HeadContent,
   Scripts,
+  type ErrorComponentProps,
 } from "@tanstack/react-router";
 import { useEffect, type ReactNode } from "react";
 
@@ -18,7 +19,7 @@ const personSchema = {
   "@type": "Person",
   "name": "Ehab Alhayek",
   "alternateName": "Ethan",
-  "url": "https://emstudios.tech",
+  "url": "https://emstudios.tech/ethanmarten/",
   "jobTitle": "AI Engineer & Web Developer",
   "sameAs": [
     "https://www.linkedin.com/in/ehabmalhayek",
@@ -49,7 +50,7 @@ function NotFoundComponent() {
   );
 }
 
-function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
+function ErrorComponent({ error, reset }: ErrorComponentProps) {
   console.error(error);
   const router = useRouter();
   useEffect(() => {
@@ -76,7 +77,7 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
             Try again
           </button>
           <a
-            href="/"
+            href={import.meta.env.BASE_URL}
             className="inline-flex items-center justify-center rounded-md border border-input bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-accent"
           >
             Go home
@@ -98,6 +99,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:title", content: "Ehab Alhayek — AI Engineer & Web Developer" },
       { property: "og:description", content: "Portfolio of Ehab Alhayek — AI Engineering student, web developer, and tech specialist crafting intelligent systems and pixel-perfect interfaces." },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://emstudios.tech/ethanmarten/" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:site", content: "@Lovable" },
       { name: "twitter:title", content: "Ehab Alhayek — AI Engineer & Web Developer" },
@@ -110,9 +112,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         rel: "stylesheet",
         href: appCss,
       },
-      { rel: "icon", type: "image/png", href: "/favicon.png" },
-      { rel: "shortcut icon", href: "/favicon.png" },
-      { rel: "apple-touch-icon", href: "/favicon.png" },
+      { rel: "canonical", href: "https://emstudios.tech/ethanmarten/" },
+      { rel: "icon", type: "image/png", href: `${import.meta.env.BASE_URL}favicon.png` },
+      { rel: "shortcut icon", href: `${import.meta.env.BASE_URL}favicon.png` },
+      { rel: "apple-touch-icon", href: `${import.meta.env.BASE_URL}favicon.png` },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" },
