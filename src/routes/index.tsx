@@ -184,17 +184,25 @@ function Header() {
   ];
   return (
     <header className="sticky top-0 z-50 border-b border-hairline bg-background/70 backdrop-blur-xl">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-        <a href="#top" className="group flex items-center gap-2">
-          <img
-            src={profilePhoto}
-            alt="Ehab Alhayek"
-            className="h-9 w-9 rounded-full object-cover object-top ring-1 ring-emerald-accent/30 transition-transform group-hover:scale-105"
-          />
-          <span className="hidden text-sm font-semibold tracking-[0.14em] sm:inline">
-            EHAB ALHAYEK
-          </span>
-        </a>
+      <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-4 sm:px-6">
+        <div className="flex items-center gap-2">
+          <a href="#top" aria-label="Ehab Alhayek home" className="group flex shrink-0 items-center">
+            <img
+              src={profilePhoto}
+              alt="Ehab Alhayek"
+              className="h-9 w-9 rounded-full object-cover object-top ring-1 ring-emerald-accent/30 transition-transform group-hover:scale-105"
+            />
+          </a>
+          <div>
+            <a href="#top" className="block text-[11px] font-semibold tracking-[0.12em] sm:text-sm">
+              EHAB ALHAYEK
+            </a>
+            <a href="https://emstudios.tech/" className="mt-1 inline-flex items-center gap-1 text-[10px] font-medium text-emerald-accent transition-colors hover:text-foreground sm:text-[11px]">
+              Founder of EM Studios
+              <ArrowUpRight className="h-3 w-3" aria-hidden="true" />
+            </a>
+          </div>
+        </div>
         <nav className="hidden items-center gap-8 md:flex">
           {links.map((l) => (
             <a
@@ -862,6 +870,10 @@ function Footer() {
             <div className="text-sm font-semibold tracking-[0.14em]">
               EHAB ALHAYEK
             </div>
+            <a href="https://emstudios.tech/" className="mt-1 inline-flex items-center gap-1 text-xs text-emerald-accent transition-colors hover:text-foreground">
+              Founder of EM Studios
+              <ArrowUpRight className="h-3 w-3" aria-hidden="true" />
+            </a>
             <div className="text-xs text-muted-foreground">
               © {new Date().getFullYear()} — Engineered with intent.
             </div>
@@ -909,3 +921,4 @@ function SectionLabel({
     </div>
   );
 }
+

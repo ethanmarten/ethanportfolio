@@ -1,16 +1,54 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "redirects": [
-    { "source": "/ethanmarten", "destination": "/ethanmarten/", "permanent": true }
+    {
+      "source": "/ethanmarten",
+      "destination": "/ehabalhayek/",
+      "permanent": true
+    },
+    {
+      "source": "/ethanmarten/:path*",
+      "destination": "/ehabalhayek/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/ehabalhayek",
+      "destination": "/ehabalhayek/",
+      "permanent": true
+    }
   ],
   "rewrites": [
-    { "source": "/ethanmarten/assets/:path*", "destination": "/assets/:path*" },
-    { "source": "/ethanmarten/favicon.png", "destination": "/favicon.png" },
-    { "source": "/ethanmarten/ehab-alhayek-cv.pdf", "destination": "/ehab-alhayek-cv.pdf" },
-    { "source": "/", "destination": "https://em-studios-gamma.vercel.app/" },
-    { "source": "/assets/:path*", "destination": "https://em-studios-gamma.vercel.app/assets/:path*" },
-    { "source": "/styles.css", "destination": "https://em-studios-gamma.vercel.app/styles.css" },
-    { "source": "/app.js", "destination": "https://em-studios-gamma.vercel.app/app.js" },
-    { "source": "/favicon.svg", "destination": "https://em-studios-gamma.vercel.app/favicon.svg" }
+    {
+      "source": "/ehabalhayek/assets/:path*",
+      "destination": "/assets/:path*"
+    },
+    {
+      "source": "/ehabalhayek/favicon.png",
+      "destination": "/favicon.png"
+    },
+    {
+      "source": "/ehabalhayek/ehab-alhayek-cv.pdf",
+      "destination": "/ehab-alhayek-cv.pdf"
+    },
+    {
+      "source": "/",
+      "destination": "https://em-studios-gamma.vercel.app/"
+    },
+    {
+      "source": "/assets/:path*",
+      "destination": "https://em-studios-gamma.vercel.app/assets/:path*"
+    },
+    {
+      "source": "/styles.css",
+      "destination": "https://em-studios-gamma.vercel.app/styles.css"
+    },
+    {
+      "source": "/app.js",
+      "destination": "https://em-studios-gamma.vercel.app/app.js"
+    },
+    {
+      "source": "/favicon.svg",
+      "destination": "https://em-studios-gamma.vercel.app/favicon.svg"
+    }
   ]
 }
