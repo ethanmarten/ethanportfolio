@@ -46,6 +46,12 @@ function isH3SwallowedErrorBody(body: string): boolean {
 
 export default {
   async fetch(request: Request, env: unknown, ctx: unknown) {
+    if (new URL(request.url).pathname === "/api/studio-locale") {
+      const country = request.headers.get("x-vercel-ip-country")?.toUpperCase();
+      const arabicCountries = new Set(["PS", "JO", "EG", "SA", "AE", "QA", "KW", "BH", "OM", "YE", "LB", "SY", "IQ", "MA", "DZ", "TN", "LY", "SD", "MR", "SO", "DJ", "KM"]);
+      const fallback = (request.headers.get("accept-language") ?? "").toLowerCase().startsWith("ar");
+      return Response.json({language: country ? (arabicCountries.has(country) ? "ar" : "en") : (fallback ? "ar" : "en")}, {headers: {"Cache-Control": "private, no-store"}});
+    }
     try {
       const handler = await getServerEntry();
       const response = await handler.fetch(request, env, ctx);
@@ -59,3 +65,4 @@ export default {
     }
   },
 };
+

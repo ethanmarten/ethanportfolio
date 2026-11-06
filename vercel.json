@@ -49,6 +49,18 @@
     {
       "source": "/favicon.svg",
       "destination": "https://em-studios-gamma.vercel.app/favicon.svg"
+    },
+    {
+      "source": "/studio.js",
+      "destination": "https://em-studios-gamma.vercel.app/studio.js"
+    },
+    {
+      "source": "/translations.json",
+      "destination": "https://em-studios-gamma.vercel.app/translations.json"
+    },
+    {
+      "source": "/services/:path*",
+      "destination": "https://em-studios-gamma.vercel.app/services/:path*"
     }
   ]
 }
