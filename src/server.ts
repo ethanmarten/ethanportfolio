@@ -1,4 +1,5 @@
 import "./lib/error-capture";
+import { createEmiHandler } from "./lib/emi-assistant.mjs";
 
 import { consumeLastCapturedError } from "./lib/error-capture";
 import { renderErrorPage } from "./lib/error-page";
@@ -8,6 +9,7 @@ type ServerEntry = {
 };
 
 let serverEntryPromise: Promise<ServerEntry> | undefined;
+const handleEmi = createEmiHandler();
 
 async function getServerEntry(): Promise<ServerEntry> {
   if (!serverEntryPromise) {
@@ -51,6 +53,7 @@ export default {
       url.hostname = "emstudios.tech";
       return Response.redirect(url.toString(), 308);
     }
+    if (url.pathname === "/api/emi-chat") return handleEmi(request);
     const discoveryFiles: Record<string, string> = {
       "/robots.txt": "text/plain; charset=utf-8",
       "/sitemap.xml": "application/xml; charset=utf-8",
