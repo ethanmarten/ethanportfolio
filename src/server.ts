@@ -46,6 +46,16 @@ function isH3SwallowedErrorBody(body: string): boolean {
 
 export default {
   async fetch(request: Request, env: unknown, ctx: unknown) {
+    const serviceMatch = new URL(request.url).pathname.match(/^\/services\/(web-development|ui-ux-branding|ai-automation)\/?$/);
+    if (serviceMatch) {
+      if (!["GET", "HEAD"].includes(request.method)) return new Response("Method not allowed", {status: 405});
+      try {
+        const upstream = await fetch(`https://em-studios-gamma.vercel.app/services/${serviceMatch[1]}/`, {signal: AbortSignal.timeout(20000)});
+        return new Response(request.method === "HEAD" ? null : upstream.body, {status: upstream.status, headers: {"Content-Type": "text/html; charset=utf-8", "Cache-Control": "public, max-age=0, s-maxage=60", "X-Content-Type-Options": "nosniff"}});
+      } catch {
+        return new Response("Service page temporarily unavailable", {status: 502});
+      }
+    }
     if (new URL(request.url).pathname === "/api/studio-locale") {
       const country = request.headers.get("x-vercel-ip-country")?.toUpperCase();
       const arabicCountries = new Set(["PS", "JO", "EG", "SA", "AE", "QA", "KW", "BH", "OM", "YE", "LB", "SY", "IQ", "MA", "DZ", "TN", "LY", "SD", "MR", "SO", "DJ", "KM"]);
