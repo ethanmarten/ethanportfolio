@@ -33,7 +33,8 @@ const personSchema = {
         "https://www.linkedin.com/in/ehabmalhayek",
         "https://github.com/ethanmarten",
         "https://www.instagram.com/ehab.__.mohammed/"
-      ]
+      ],
+      "image": "https://emstudios.tech/ehab-alhayek.webp"
     },
     {
       "@type": "Organization",
@@ -62,6 +63,13 @@ const personSchema = {
       },
       "isPartOf": {
         "@id": "https://emstudios.tech/#website"
+      },
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://emstudios.tech/ehab-alhayek.webp",
+        "width": 1024,
+        "height": 1024,
+        "caption": "Ehab Alhayek, founder of EM Studios"
       }
     }
   ]
@@ -139,13 +147,17 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:site_name", content: "EM Studios" },
       { property: "og:title", content: "Ehab Alhayek — Founder of EM Studios & Web Developer" },
       { property: "og:description", content: "Ehab Alhayek, founder and developer at EM Studios. Explore his work in web development, digital design, AI automation, and technology projects." },
-      { property: "og:type", content: "website" },
+      { property: "og:type", content: "profile" },
+      { property: "og:image:alt", content: "Ehab Alhayek, founder of EM Studios" },
+      { property: "og:image:width", content: "1024" },
+      { property: "og:image:height", content: "1024" },
+      { name: "twitter:image:alt", content: "Ehab Alhayek, founder of EM Studios" },
       { property: "og:url", content: "https://emstudios.tech/ehabalhayek/" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "Ehab Alhayek — Founder of EM Studios & Web Developer" },
       { name: "twitter:description", content: "Ehab Alhayek, founder and developer at EM Studios. Explore his work in web development, digital design, AI automation, and technology projects." },
-      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/mOHaU9BmtLPIzdHRFU5HgfefCb83/social-images/social-1783241469953-Gemini_Generated_Image_ivz1daivz1daivz1.webp" },
-      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/mOHaU9BmtLPIzdHRFU5HgfefCb83/social-images/social-1783241469953-Gemini_Generated_Image_ivz1daivz1daivz1.webp" },
+      { property: "og:image", content: "https://emstudios.tech/ehab-alhayek.webp" },
+      { name: "twitter:image", content: "https://emstudios.tech/ehab-alhayek.webp" },
     ],
     links: [
       {
