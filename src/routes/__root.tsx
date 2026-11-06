@@ -13,18 +13,57 @@ import { useEffect, type ReactNode } from "react";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 
-// كود الـ Schema.org لتعريف البيانات المنظمة لشخصيتك الرقمية
 const personSchema = {
   "@context": "https://schema.org",
-  "@type": "Person",
-  "name": "Ehab Alhayek",
-  "alternateName": "Ethan",
-  "url": "https://emstudios.tech/ehabalhayek/",
-  "jobTitle": "AI Engineer & Web Developer",
-  "sameAs": [
-    "https://www.linkedin.com/in/ehabmalhayek",
-    "https://github.com/ethanmarten",
-    "https://www.instagram.com/ehab.__.mohammed/"
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://emstudios.tech/ehabalhayek/#person",
+      "name": "Ehab Alhayek",
+      "alternateName": [
+        "Ehab M. Alhayek",
+        "Ehab Mohammed Alhayek"
+      ],
+      "url": "https://emstudios.tech/ehabalhayek/",
+      "jobTitle": "Founder & Developer",
+      "worksFor": {
+        "@id": "https://emstudios.tech/#organization"
+      },
+      "sameAs": [
+        "https://www.linkedin.com/in/ehabmalhayek",
+        "https://github.com/ethanmarten",
+        "https://www.instagram.com/ehab.__.mohammed/"
+      ]
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://emstudios.tech/#organization",
+      "name": "EM Studios",
+      "url": "https://emstudios.tech/",
+      "description": "Digital product and technology studio providing web development, digital design, AI automation, and technology collaboration.",
+      "email": "contact@emstudios.tech",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://emstudios.tech/assets/em-studios-logo.svg",
+        "width": 512,
+        "height": 512
+      },
+      "founder": {
+        "@id": "https://emstudios.tech/ehabalhayek/#person"
+      }
+    },
+    {
+      "@type": "ProfilePage",
+      "@id": "https://emstudios.tech/ehabalhayek/#profile",
+      "url": "https://emstudios.tech/ehabalhayek/",
+      "name": "Ehab Alhayek — Founder of EM Studios & Web Developer",
+      "mainEntity": {
+        "@id": "https://emstudios.tech/ehabalhayek/#person"
+      },
+      "isPartOf": {
+        "@id": "https://emstudios.tech/#website"
+      }
+    }
   ]
 };
 
@@ -93,17 +132,18 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Ehab Alhayek — AI Engineer & Web Developer" },
-      { name: "description", content: "Portfolio of Ehab Alhayek — AI Engineering student, web developer, and tech specialist crafting intelligent systems and pixel-perfect interfaces." },
+      { title: "Ehab Alhayek — Founder of EM Studios & Web Developer" },
+      { name: "description", content: "Ehab Alhayek, founder and developer at EM Studios. Explore his work in web development, digital design, AI automation, and technology projects." },
       { name: "author", content: "Ehab Alhayek" },
-      { property: "og:title", content: "Ehab Alhayek — AI Engineer & Web Developer" },
-      { property: "og:description", content: "Portfolio of Ehab Alhayek — AI Engineering student, web developer, and tech specialist crafting intelligent systems and pixel-perfect interfaces." },
+      { name: "robots", content: "index, follow, max-image-preview:large" },
+      { property: "og:site_name", content: "EM Studios" },
+      { property: "og:title", content: "Ehab Alhayek — Founder of EM Studios & Web Developer" },
+      { property: "og:description", content: "Ehab Alhayek, founder and developer at EM Studios. Explore his work in web development, digital design, AI automation, and technology projects." },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "https://emstudios.tech/ehabalhayek/" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:site", content: "@Lovable" },
-      { name: "twitter:title", content: "Ehab Alhayek — AI Engineer & Web Developer" },
-      { name: "twitter:description", content: "Portfolio of Ehab Alhayek — AI Engineering student, web developer, and tech specialist crafting intelligent systems and pixel-perfect interfaces." },
+      { name: "twitter:title", content: "Ehab Alhayek — Founder of EM Studios & Web Developer" },
+      { name: "twitter:description", content: "Ehab Alhayek, founder and developer at EM Studios. Explore his work in web development, digital design, AI automation, and technology projects." },
       { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/mOHaU9BmtLPIzdHRFU5HgfefCb83/social-images/social-1783241469953-Gemini_Generated_Image_ivz1daivz1daivz1.webp" },
       { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/mOHaU9BmtLPIzdHRFU5HgfefCb83/social-images/social-1783241469953-Gemini_Generated_Image_ivz1daivz1daivz1.webp" },
     ],
