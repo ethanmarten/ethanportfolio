@@ -274,7 +274,7 @@ function Hero() {
             Start a Conversation
           </a>
           <a
-            href="/ehab-alhayek-cv.pdf"
+            href="/ehabalhayek/ehab-alhayek-cv.pdf"
             download="Ehab-Alhayek-CV.pdf"
             className="inline-flex items-center gap-2 rounded-full border border-emerald-accent/40 bg-emerald-accent/10 px-6 py-3 text-sm font-semibold text-emerald-accent transition-all hover:bg-emerald-accent hover:text-primary-foreground"
           >

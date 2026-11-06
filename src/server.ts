@@ -46,7 +46,25 @@ function isH3SwallowedErrorBody(body: string): boolean {
 
 export default {
   async fetch(request: Request, env: unknown, ctx: unknown) {
-    const serviceMatch = new URL(request.url).pathname.match(/^\/services\/(web-development|ui-ux-branding|ai-automation)\/?$/);
+    const url = new URL(request.url);
+    if (url.hostname === "www.emstudios.tech") {
+      url.hostname = "emstudios.tech";
+      return Response.redirect(url.toString(), 308);
+    }
+    const discoveryFiles: Record<string, string> = {
+      "/robots.txt": "text/plain; charset=utf-8",
+      "/sitemap.xml": "application/xml; charset=utf-8",
+    };
+    if (discoveryFiles[url.pathname]) {
+      if (!["GET", "HEAD"].includes(request.method)) return new Response("Method not allowed", {status: 405});
+      try {
+        const upstream = await fetch("https://em-studios-gamma.vercel.app" + url.pathname, {signal: AbortSignal.timeout(20000)});
+        return new Response(request.method === "HEAD" ? null : upstream.body, {status: upstream.status, headers: {"Content-Type": discoveryFiles[url.pathname], "Cache-Control": "public, max-age=0, s-maxage=60", "X-Content-Type-Options": "nosniff"}});
+      } catch {
+        return new Response("Discovery file temporarily unavailable", {status: 502});
+      }
+    }
+    const serviceMatch = url.pathname.match(/^\/services\/(web-development|ui-ux-branding|ai-automation)\/?$/);
     if (serviceMatch) {
       if (!["GET", "HEAD"].includes(request.method)) return new Response("Method not allowed", {status: 405});
       try {

@@ -2,6 +2,17 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "redirects": [
     {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.emstudios.tech"
+        }
+      ],
+      "destination": "https://emstudios.tech/:path*",
+      "permanent": true
+    },
+    {
       "source": "/ethanmarten",
       "destination": "/ehabalhayek/",
       "permanent": true
@@ -15,6 +26,11 @@
       "source": "/ehabalhayek",
       "destination": "/ehabalhayek/",
       "permanent": true
+    },
+    {
+      "source": "/favicon.ico",
+      "destination": "/assets/em-studios-icon.png",
+      "permanent": true
     }
   ],
   "rewrites": [
@@ -24,7 +40,7 @@
     },
     {
       "source": "/ehabalhayek/favicon.png",
-      "destination": "/favicon.png"
+      "destination": "/ehab-favicon.png"
     },
     {
       "source": "/ehabalhayek/ehab-alhayek-cv.pdf",
@@ -61,6 +77,34 @@
     {
       "source": "/services/:path*",
       "destination": "https://em-studios-gamma.vercel.app/services/:path*"
+    },
+    {
+      "source": "/robots.txt",
+      "destination": "https://em-studios-gamma.vercel.app/robots.txt"
+    },
+    {
+      "source": "/sitemap.xml",
+      "destination": "https://em-studios-gamma.vercel.app/sitemap.xml"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/ehab-alhayek-cv.pdf",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, noarchive"
+        }
+      ]
+    },
+    {
+      "source": "/ehabalhayek/ehab-alhayek-cv.pdf",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, noarchive"
+        }
+      ]
     }
   ]
 }
