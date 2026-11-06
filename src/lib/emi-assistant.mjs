@@ -62,7 +62,11 @@ export function createEmiHandler({env=process.env,send=fetch,now=Date.now}={}){
   if(!token||env.EMI_AI_ENABLED==='false')return guide('guide_mode');
   try{
    const response=await send('https://ai-gateway.vercel.sh/v1/chat/completions',{method:'POST',signal:AbortSignal.timeout(18000),headers:{Authorization:'Bearer '+token,'Content-Type':'application/json'},body:JSON.stringify({model:env.EMI_MODEL||'google/gemini-3.8-flash',max_tokens:450,temperature:0.35,messages:[{role:'system',content:FACTS},...body.messages.map(m=>({role:m.role,content:m.content.trim()}))]})});
-   if(!response.ok)return guide('ai_unavailable');
+   if(!response.ok){
+    let code;try{const error=await response.json();code=error.error?.code||error.error?.type||error.code;}catch{}
+    const approved=new Set(['customer_verification_required','insufficient_funds','quota_for_entity_exceeded']);
+    return guide(approved.has(code)?code:response.status===401?'authorization_required':response.status===402?'credits_unavailable':response.status===403?'setup_required':'ai_unavailable');
+   }
    const result=await response.json();const message=result.choices?.[0]?.message?.content;
    if(typeof message!=='string'||!message.trim())return guide('ai_unavailable');
    return json({message:message.trim().slice(0,2400),links:fallback.links,mode:'ai'});
