@@ -6,6 +6,7 @@ import {
   Send,
   MessageCircle,
   Github,
+  Linkedin,
   Cpu,
   Code2,
   Sparkles,
@@ -29,6 +30,7 @@ const WHATSAPP = "https://wa.me/972594820775";
 const TELEGRAM = "https://t.me/ehabalhayekm";
 const EMAIL = "mailto:ehabalhayekm@gmail.com";
 const GITHUB = "https://github.com/ethanmarten/";
+const LINKEDIN = "https://www.linkedin.com/in/ehabmalhayek";
 
 type Category = "All" | "Web Development" | "AI & Automation" | "Tech Support";
 
@@ -252,8 +254,9 @@ function Hero() {
             </h1>
 
             <p className="mt-8 max-w-2xl text-lg leading-relaxed text-muted-foreground">
-              AI Engineering Student at the <span className="text-foreground font-semibold">Islamic University of Gaza</span> &
-              Web Developer with <span className="text-foreground font-semibold">3+ years</span> of professional technical
+              I’m Ehab Alhayek, an AI &amp; Web Developer based in Gaza, Palestine.
+              I study AI Engineering at the <span className="text-foreground font-semibold">Islamic University of Gaza</span> and bring
+              <span className="text-foreground font-semibold"> 3+ years</span> of professional technical
               support experience. Bridging the gap between complex algorithms and pixel-perfect user interfaces.
             </p>
 
@@ -354,7 +357,8 @@ function About() {
           </Reveal>
           <Reveal delay={100}>
           <p className="mt-6 text-lg leading-relaxed text-muted-foreground">
-            I'm Ehab Alhayek — an AI Engineering student at the Islamic University of Gaza
+            I'm Ehab Alhayek (إيهاب الحايك), founder of EM Studios, based in Gaza, Palestine —
+            an AI Engineering student at the Islamic University of Gaza
             with a technical support background rooted in hardware, kernels, and infrastructure.
             I build production-grade web experiences and LLM-powered automation for teams that
             demand both aesthetic precision and engineering rigor.
@@ -888,6 +892,9 @@ function Footer() {
           </a>
           <a href={EMAIL} aria-label="Email" className="text-muted-foreground transition-colors hover:text-emerald-accent">
             <Mail className="h-5 w-5" />
+          </a>
+          <a href={LINKEDIN} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="text-muted-foreground transition-colors hover:text-emerald-accent">
+            <Linkedin className="h-5 w-5" />
           </a>
           <a href={GITHUB} target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="text-muted-foreground transition-colors hover:text-emerald-accent">
             <Github className="h-5 w-5" />

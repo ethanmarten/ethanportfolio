@@ -77,14 +77,6 @@
     {
       "source": "/services/:path*",
       "destination": "https://em-studios-gamma.vercel.app/services/:path*"
-    },
-    {
-      "source": "/robots.txt",
-      "destination": "https://em-studios-gamma.vercel.app/robots.txt"
-    },
-    {
-      "source": "/sitemap.xml",
-      "destination": "https://em-studios-gamma.vercel.app/sitemap.xml"
     }
   ],
   "headers": [

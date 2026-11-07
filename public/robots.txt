@@ -1,0 +1,39 @@
+# Public pages are available to search engines and AI search assistants.
+# API endpoints are not public search content.
+User-agent: *
+Disallow: /api/
+Allow: /
+
+User-agent: Googlebot
+Disallow: /api/
+Allow: /
+
+User-agent: Bingbot
+Disallow: /api/
+Allow: /
+
+User-agent: OAI-SearchBot
+Disallow: /api/
+Allow: /
+
+User-agent: ChatGPT-User
+Disallow: /api/
+Allow: /
+
+User-agent: Claude-SearchBot
+Disallow: /api/
+Allow: /
+
+User-agent: Claude-User
+Disallow: /api/
+Allow: /
+
+User-agent: PerplexityBot
+Disallow: /api/
+Allow: /
+
+User-agent: Perplexity-User
+Disallow: /api/
+Allow: /
+
+Sitemap: https://emstudios.tech/sitemap.xml

@@ -22,10 +22,19 @@ const personSchema = {
       "name": "Ehab Alhayek",
       "alternateName": [
         "Ehab M. Alhayek",
-        "Ehab Mohammed Alhayek"
+        "Ehab Mohammed Alhayek",
+        "إيهاب الحايك",
+        "إيهاب محمد الحايك"
       ],
       "url": "https://emstudios.tech/ehabalhayek/",
-      "jobTitle": "Founder & Developer",
+      "jobTitle": "AI & Web Developer, Founder of EM Studios",
+      "description": "AI and web developer, AI Engineering student, and founder of EM Studios based in Gaza, Palestine.",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Gaza",
+        "addressCountry": "PS"
+      },
+      "knowsAbout": ["Artificial Intelligence", "LLM Integration", "AI Automation", "Web Development", "Python"],
       "worksFor": {
         "@id": "https://emstudios.tech/#organization"
       },
@@ -57,7 +66,9 @@ const personSchema = {
       "@type": "ProfilePage",
       "@id": "https://emstudios.tech/ehabalhayek/#profile",
       "url": "https://emstudios.tech/ehabalhayek/",
-      "name": "Ehab Alhayek — Founder of EM Studios & Web Developer",
+      "name": "Ehab Alhayek | AI Developer | Gaza, Palestine",
+      "inLanguage": "en",
+      "about": { "@id": "https://emstudios.tech/ehabalhayek/#person" },
       "mainEntity": {
         "@id": "https://emstudios.tech/ehabalhayek/#person"
       },
@@ -140,13 +151,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Ehab Alhayek — Founder of EM Studios & Web Developer" },
-      { name: "description", content: "Ehab Alhayek, founder and developer at EM Studios. Explore his work in web development, digital design, AI automation, and technology projects." },
+      { title: "Ehab Alhayek | AI Developer | Gaza, Palestine" },
+      { name: "description", content: "Ehab Alhayek, AI and web developer, AI Engineering student, and founder of EM Studios in Gaza, Palestine. Explore AI automation and web development projects." },
       { name: "author", content: "Ehab Alhayek" },
       { name: "robots", content: "index, follow, max-image-preview:large" },
       { property: "og:site_name", content: "EM Studios" },
-      { property: "og:title", content: "Ehab Alhayek — Founder of EM Studios & Web Developer" },
-      { property: "og:description", content: "Ehab Alhayek, founder and developer at EM Studios. Explore his work in web development, digital design, AI automation, and technology projects." },
+      { property: "og:title", content: "Ehab Alhayek | AI Developer | Gaza, Palestine" },
+      { property: "og:description", content: "Ehab Alhayek, AI and web developer, AI Engineering student, and founder of EM Studios in Gaza, Palestine. Explore AI automation and web development projects." },
       { property: "og:type", content: "profile" },
       { property: "og:image:alt", content: "Ehab Alhayek, founder of EM Studios" },
       { property: "og:image:width", content: "1024" },
@@ -154,8 +165,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "twitter:image:alt", content: "Ehab Alhayek, founder of EM Studios" },
       { property: "og:url", content: "https://emstudios.tech/ehabalhayek/" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "Ehab Alhayek — Founder of EM Studios & Web Developer" },
-      { name: "twitter:description", content: "Ehab Alhayek, founder and developer at EM Studios. Explore his work in web development, digital design, AI automation, and technology projects." },
+      { name: "twitter:title", content: "Ehab Alhayek | AI Developer | Gaza, Palestine" },
+      { name: "twitter:description", content: "Ehab Alhayek, AI and web developer, AI Engineering student, and founder of EM Studios in Gaza, Palestine. Explore AI automation and web development projects." },
       { property: "og:image", content: "https://emstudios.tech/ehab-alhayek.webp" },
       { name: "twitter:image", content: "https://emstudios.tech/ehab-alhayek.webp" },
     ],

@@ -20,3 +20,13 @@ The personal page's layout, content, interactions, and contact links are retaine
 Install the versions in `bun.lock`, then run `bun run dev` and open `/ehabalhayek/`. Company CDN rewrites are applied by Vercel, so the root company page must be checked on a Vercel preview deployment.
 
 For a build matching Vercel: `VERCEL=1 bun run build`. The Vercel project must keep using this repository for its Git deployments and retain its existing custom domains.
+
+## Search visibility
+
+Public pages are crawlable. `robots.txt` explicitly permits Google, Bing, and the search/fetch agents for ChatGPT, Claude, and Perplexity, while excluding `/api/`. The sitemap lists the company, three service pages, and Ehab's canonical profile. The gateway repository (`ethanportfolio`) serves its own discovery files directly, including a server fallback, so discovery no longer depends on an upstream deployment. Keep the discovery files in both repositories aligned when adding public pages.
+
+The profile's server-rendered metadata and Person/ProfilePage data describe Ehab as an AI and web developer, AI Engineering student, and founder of EM Studios in Gaza, Palestine. The company uses the same Person ID and role. No training audience numbers or additional credentials are inferred.
+
+### Cloudflare access
+
+Repository rules do not override Cloudflare's edge policies or managed robots response. In Cloudflare, review **Security → Settings → AI Crawler and Agent access policies** and allow Search traffic and the intended personal agents. Keep API protections in place. Use Security Events to inspect blocks before changing rules. Error `1010` refers to browser-signature blocking / Browser Integrity Check; a failed library-default request alone does not prove verified search crawlers are blocked. Verify the custom domain with Search Console's live URL inspection and inspect the final public robots response after policy changes. GPTBot's model-training policy is separate from OAI-SearchBot's search access.

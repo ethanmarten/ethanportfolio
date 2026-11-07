@@ -1,5 +1,7 @@
 import "./lib/error-capture";
 import { createEmiHandler } from "./lib/emi-assistant.mjs";
+import robots from "../public/robots.txt?raw";
+import sitemap from "../public/sitemap.xml?raw";
 
 import { consumeLastCapturedError } from "./lib/error-capture";
 import { renderErrorPage } from "./lib/error-page";
@@ -54,18 +56,14 @@ export default {
       return Response.redirect(url.toString(), 308);
     }
     if (url.pathname === "/api/emi-chat") return handleEmi(request);
-    const discoveryFiles: Record<string, string> = {
-      "/robots.txt": "text/plain; charset=utf-8",
-      "/sitemap.xml": "application/xml; charset=utf-8",
+    const discoveryFiles: Record<string, { content: string; type: string }> = {
+      "/robots.txt": { content: robots, type: "text/plain; charset=utf-8" },
+      "/sitemap.xml": { content: sitemap, type: "application/xml; charset=utf-8" },
     };
-    if (discoveryFiles[url.pathname]) {
-      if (!["GET", "HEAD"].includes(request.method)) return new Response("Method not allowed", {status: 405});
-      try {
-        const upstream = await fetch("https://em-studios-gamma.vercel.app" + url.pathname, {signal: AbortSignal.timeout(20000)});
-        return new Response(request.method === "HEAD" ? null : upstream.body, {status: upstream.status, headers: {"Content-Type": discoveryFiles[url.pathname], "Cache-Control": "public, max-age=0, s-maxage=60", "X-Content-Type-Options": "nosniff"}});
-      } catch {
-        return new Response("Discovery file temporarily unavailable", {status: 502});
-      }
+    const discoveryFile = Object.hasOwn(discoveryFiles, url.pathname) ? discoveryFiles[url.pathname] : undefined;
+    if (discoveryFile) {
+      if (!["GET", "HEAD"].includes(request.method)) return new Response("Method not allowed", {status: 405, headers: {Allow: "GET, HEAD"}});
+      return new Response(request.method === "HEAD" ? null : discoveryFile.content, {headers: {"Content-Type": discoveryFile.type, "Cache-Control": "public, max-age=0, s-maxage=60", "X-Content-Type-Options": "nosniff"}});
     }
     const serviceMatch = url.pathname.match(/^\/services\/(web-development|ui-ux-branding|ai-automation)\/?$/);
     if (serviceMatch) {
